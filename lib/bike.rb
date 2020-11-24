@@ -4,6 +4,6 @@ class Bike
   end
 
   def working?
-    p "working!"
+    true
   end
 end
