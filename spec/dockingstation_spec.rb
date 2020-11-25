@@ -27,7 +27,7 @@ describe DockingStation do
     end
 
     it 'returns bike to docking station' do
-      expect(docking_station.return_bike).not_to be_empty
+      expect(docking_station.return_bike(bike)).not_to be_empty
     end
 end
 
@@ -36,5 +36,15 @@ RSpec.describe "release_bike cannot give a bike when @stored_bikes is empty" do
   let(:stored_bikes) { [] }
     it "raises error" do
       expect { docking_station.release_bike }.to raise_error(RuntimeError)
+    end
+end
+
+RSpec.describe "return_bike cannot store a bike when @stored_bikes is full" do
+  subject(:docking_station) { DockingStation.new }
+  # let(:stored_bikes) { Array.new(20) }
+  let(:bike) { Bike.new }
+    it "raises error" do
+      docking_station.stored_bikes[1..20] = "bike"
+      expect { docking_station.return_bike(bike) }.to raise_error(RuntimeError)
     end
 end

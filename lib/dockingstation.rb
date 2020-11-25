@@ -16,8 +16,13 @@ class DockingStation
     end
   end
 
-  def return_bike
-    @stored_bikes << @bike
+  def return_bike(bike)
+    @bikes = bike
+    if @stored_bikes.length == 20
+      fail "ERROR: Docking station is full"
+    else
+      @stored_bikes << @bikes
+    end
   end
 
 
