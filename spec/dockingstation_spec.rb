@@ -21,4 +21,11 @@ describe DockingStation do
       expect(docking_station).to respond_to (:return_bike)
     end
 
+    it 'has bike in docking station' do
+      expect(docking_station.stored_bikes).not_to be_empty
+    end
+
+    it 'returns bike to docking station' do
+      expect(docking_station.return_bike).not_to be_empty
+    end
 end
