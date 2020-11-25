@@ -6,4 +6,9 @@ class DockingStation
     bike = Bike.new
   end
 
+  def return_bike
+    
+  end
+
+
 end

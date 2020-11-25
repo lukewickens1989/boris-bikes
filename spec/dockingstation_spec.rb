@@ -17,6 +17,8 @@ describe DockingStation do
       end
     end
 
-
+    it 'docking_station responds to return_bike' do
+      expect(docking_station).to respond_to (:return_bike)
+    end
 
 end
