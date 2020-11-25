@@ -9,6 +9,7 @@ describe DockingStation do
 
     describe '#release_bike' do
       it 'gets a bike' do
+        docking_station.stored_bikes[0] = "bike"
         expect(docking_station.release_bike).to be_an_instance_of(Bike)
       end
 
@@ -21,8 +22,8 @@ describe DockingStation do
       expect(docking_station).to respond_to (:return_bike)
     end
 
-    it 'has bike in docking station' do
-      expect(docking_station.stored_bikes).not_to be_empty
+    it 'has no bikes in docking station' do
+      expect(docking_station.stored_bikes).to be_empty
     end
 
     it 'returns bike to docking station' do
@@ -32,8 +33,8 @@ end
 
 RSpec.describe "release_bike cannot give a bike when @stored_bikes is empty" do
   subject(:docking_station) { DockingStation.new }
+  let(:stored_bikes) { [] }
     it "raises error" do
-      docking_station.release_bike
-      expect { docking_station.release_bike }.to raise_error
+      expect { docking_station.release_bike }.to raise_error(RuntimeError)
     end
 end
