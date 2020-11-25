@@ -29,3 +29,11 @@ describe DockingStation do
       expect(docking_station.return_bike).not_to be_empty
     end
 end
+
+RSpec.describe "release_bike cannot give a bike when @stored_bikes is empty" do
+  subject(:docking_station) { DockingStation.new }
+    it "raises error" do
+      docking_station.release_bike
+      expect { docking_station.release_bike }.to raise_error
+    end
+end
