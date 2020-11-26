@@ -8,6 +8,7 @@ class DockingStation
   attr_reader :stored_bikes
 
   def initialize(capacity=DEFAULT_CAPACITY)
+    @broken_bikes = []
     @stored_bikes = []
     @capacity = capacity
   end
@@ -21,8 +22,14 @@ class DockingStation
   end
 
   def return_bike(bike)
+    @bike = bike
     fail 'Docking station full' if full?
-    @stored_bikes << bike
+    bike.working?
+    if bike.working? == false
+      @broken_bikes << bike
+    else  
+      @stored_bikes << bike
+    end
   end
 
   private
