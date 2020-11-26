@@ -42,7 +42,7 @@ end
 RSpec.describe "return_bike cannot store a bike when @stored_bikes is full" do
   subject(:docking_station) { DockingStation.new }
   it 'raises an error when full' do
-    20.times { subject.return_bike Bike.new }
+    DockingStation::DEFAULT_CAPACITY.times { subject.return_bike Bike.new }
     expect { subject.return_bike Bike.new }.to raise_error "Docking station full"
   end
 end
