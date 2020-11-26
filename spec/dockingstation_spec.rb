@@ -41,10 +41,14 @@ end
 
 RSpec.describe "return_bike cannot store a bike when @stored_bikes is full" do
   subject(:docking_station) { DockingStation.new }
-  # let(:stored_bikes) { Array.new(20) }
-  let(:bike) { Bike.new }
-    it "raises error" do
-      docking_station.stored_bikes[1..20] = "bike"
-      expect { docking_station.return_bike(bike) }.to raise_error(RuntimeError)
-    end
+  # # let(:stored_bikes) { Array.new(20) }
+  # let(:bike) { Bike.new }
+  #   it "raises error" do
+  #     20.times {docking_station.stored_bikes Bike.new }
+  #     expect { docking_station.return_bike(bike) }.to raise_error[RuntimeError]
+  #   end
+  it 'raises an error when full' do
+    20.times { subject.return_bike Bike.new }
+    expect { subject.return_bike Bike.new }.to raise_error "Docking station full"
+  end
 end
